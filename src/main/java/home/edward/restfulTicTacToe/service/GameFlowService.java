@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Edward
  */
-@Service
+
 public class GameFlowService {
     private final TicTacToeGame ticTacToeGame;
 

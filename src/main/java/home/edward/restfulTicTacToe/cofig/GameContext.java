@@ -6,7 +6,6 @@ import home.edward.restfulTicTacToe.game.WinnerSearcher;
 import home.edward.restfulTicTacToe.service.GameFlowService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
 
 /**
  * 15.09.2019 22:27

@@ -26,7 +26,7 @@ class TicTacToeGameTest {
 
 
     @Test
-    public void isAllCellsHaveEmptyStringInNewGameTable() {
+    void isAllCellsHaveEmptyStringInNewGameTable() {
         String expected = "";
 
         String[] cells = gameTable.getCells();
@@ -38,8 +38,8 @@ class TicTacToeGameTest {
     }
 
     @Test
-    public void shouldGameTableHaveCorrectSize() {
-        int expectedSize = 9;
+    void shouldGameTableHaveCorrectSize() {
+        int expectedSize = GameTable.MAX_NUMBER_OF_CELLS;
 
         String[] cells = gameTable.getCells();
 
@@ -47,8 +47,8 @@ class TicTacToeGameTest {
     }
 
     @Test
-    public void shouldCountOfEmptySquaresInNewGameMatchTableSize() {
-        int expectedSize = 9;
+    void shouldCountOfEmptySquaresInNewGameMatchTableSize() {
+        int expectedSize = GameTable.MAX_NUMBER_OF_CELLS;
 
         int actualEmptySquaresLeft = gameTable.getEmptySquaresLeft();
 
@@ -56,8 +56,8 @@ class TicTacToeGameTest {
     }
 
     @Test
-    public void shouldPlayerSetSymbolX() {
-        String expected = "X";
+    void shouldPlayerSetSymbolX() {
+        String expected = GameTable.X_SYMBOL;
 
         ticTacToeGame.markCell(4, TicTacToeGame.PLAYER_USER);
         String[] cells = gameTable.getCells();
@@ -67,8 +67,8 @@ class TicTacToeGameTest {
     }
 
     @Test
-    public void shouldComputerSetSymbolO() {
-        String expected = "O";
+    void shouldComputerSetSymbolO() {
+        String expected = GameTable.O_SYMBOL;
 
         ticTacToeGame.markCell(4, TicTacToeGame.PLAYER_COMPUTER);
         String[] cells = gameTable.getCells();
@@ -78,7 +78,7 @@ class TicTacToeGameTest {
     }
 
     @Test
-    public void shouldPCmakeStepsInRandomCell() {
+    void shouldPCmakeStepsInRandomCell() {
         int expectedEmptySquares = 6;
         int expectedCountStingO = 3;
         int countStingO = 0;
@@ -89,7 +89,7 @@ class TicTacToeGameTest {
 
         String[] cells = gameTable.getCells();
         for (String cell : cells) {
-            if (cell.equals("O")) {
+            if (cell.equals(GameTable.O_SYMBOL)) {
                 countStingO++;
             }
         }
@@ -100,7 +100,7 @@ class TicTacToeGameTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 7, 8})
-    public void doesUserCanEnterCorrectValuesOfNumberOfCell(int testInts) {
+    void doesUserCanEnterCorrectValuesOfNumberOfCell(int testInts) {
         String expectedString = "ok";
         String[] cells = gameTable.getCells();
 
@@ -112,7 +112,7 @@ class TicTacToeGameTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a", "Y", "?", "ЮЮ", "9", "11"})
-    public void doesUserCanEnterAnySymbolExceptNumbersFromZeroToEight(String strings) {
+    void doesUserCanEnterAnySymbolExceptNumbersFromZeroToEight(String strings) {
         String expectedString = "Please enter number of cell from 0 to 8";
         String[] cells = gameTable.getCells();
 
@@ -123,7 +123,7 @@ class TicTacToeGameTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, 4, 8})
-    public void doesUserCanEnterOnlyNumberOfFreeCells(int testInts) {
+    void doesUserCanEnterOnlyNumberOfFreeCells(int testInts) {
         String expectedString = "Choose free cell and enter its number";
         String[] cells = gameTable.getCells();
 
@@ -137,19 +137,20 @@ class TicTacToeGameTest {
 
 
     @Test
-    public void shouldGetResultWhenGameOver() {
+    void shouldGetResultWhenGameOver() {
         String expectedCase1 = "You win!";
         String expectedCase2 = "You loose!";
         String expectedCase3 = "Tie!";
+        String expectedDefaultCase = "";
 
-        String actualCase1 = ticTacToeGame.getResult("X");
-        String actualCase2 = ticTacToeGame.getResult("O");
-        String actualCase3 = ticTacToeGame.getResult("T");
+        String actualCase1 = ticTacToeGame.getResult(GameTable.X_SYMBOL);
+        String actualCase2 = ticTacToeGame.getResult(GameTable.O_SYMBOL);
+        String actualCase3 = ticTacToeGame.getResult(GameTable.TIE_SYMBOL);
         String actualCase4 = ticTacToeGame.getResult("x");
         assertEquals(expectedCase1, actualCase1);
         assertEquals(expectedCase2, actualCase2);
         assertEquals(expectedCase3, actualCase3);
-        assertNull(actualCase4);
+        assertEquals(expectedDefaultCase, actualCase4);
     }
 
 }
